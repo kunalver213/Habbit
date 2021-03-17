@@ -37,5 +37,11 @@ public class HabbitController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/getTodayList")
+	@ResponseBody
+	public String getAdvTypeList() {
+		return new Jsons().advtypelist();
+	}
+	
 	
 }
