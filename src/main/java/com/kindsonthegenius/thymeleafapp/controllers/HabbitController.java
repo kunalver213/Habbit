@@ -29,7 +29,7 @@ public class HabbitController {
 	
 	@RequestMapping("/dash")
 	public String dash() {
-		return "dash";
+		return "dash.jsp";
 	}
 	
 	@RequestMapping("/home")

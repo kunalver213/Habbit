@@ -34,6 +34,14 @@
 <body>
 <h2>Dashboard</h2>
 
+<%@page import="com.kindsonthegenius.thymeleafapp.models"%>
+
+<%
+    
+    String ind = com.kindsonthegenius.thymeleafapp.models.Jsons.advtypelist();
+
+%>
+
 <h2>Animated Collapsibles</h2>
 
 <p>Day:</p>
