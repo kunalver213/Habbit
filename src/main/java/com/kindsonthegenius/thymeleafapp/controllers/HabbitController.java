@@ -27,10 +27,14 @@ import com.kindsonthegenius.thymeleafapp.services.StudentService;
 public class HabbitController {
 	
 	
-	@RequestMapping(value="/advtypelist", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
-	@ResponseBody
-	public String getAdvTypeList(@RequestBody String empId) {
-		return new Jsons().advtypelist();
+	@RequestMapping("/dash")
+	public String dash() {
+		return "dash";
+	}
+	
+	@RequestMapping("/home")
+	public String test() {
+		return "index";
 	}
 	
 	
