@@ -17,6 +17,7 @@ import com.kindsonthegenius.thymeleafapp.models.Jsons;
 import com.kindsonthegenius.thymeleafapp.models.LfcContinue;
 import com.kindsonthegenius.thymeleafapp.models.Student;
 import com.kindsonthegenius.thymeleafapp.models.VigSaveSubmit;
+import com.kindsonthegenius.thymeleafapp.services.HabbService;
 import com.kindsonthegenius.thymeleafapp.services.StudentService;
 
 
@@ -29,28 +30,7 @@ public class HabbitController {
 	
 	@RequestMapping("/dash")
 	public String dash() {
-		return "dash1";
-	}
-	
-	@RequestMapping("/dash2")
-	public String dash2() {
-		return "dash";
-	}
-	
-	@RequestMapping("/dash3")
-	public String dash3() {
-		return "dash1.jsp";
-	}
-	
-	@RequestMapping("/home")
-	public String test() {
-		return "index";
-	}
-	
-	@RequestMapping(value="/getTodayList")
-	@ResponseBody
-	public String getAdvTypeList() {
-		return new Jsons().advtypelist();
+		return HabbService.dashdata();
 	}
 	
 	
