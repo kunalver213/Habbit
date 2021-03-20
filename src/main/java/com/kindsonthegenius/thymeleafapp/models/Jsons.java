@@ -1,5 +1,8 @@
 package com.kindsonthegenius.thymeleafapp.models;
 
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class Jsons {
 	
 	public String advtypelist() {
@@ -50,44 +53,19 @@ public class Jsons {
 	}
 
 	public String advreasonlist() {
-		return "[\r\n" + 
-				"    {\r\n" + 
-				"        \"reasonValue\": \"9000\",\r\n" + 
-				"        \"reasonText\": \"PC/Laptop/Tablet\",\r\n" + 
-				"        \"errorStatus\": null,\r\n" + 
-				"        \"advancesReasonList\": null\r\n" + 
-				"    },\r\n" + 
-				"    {\r\n" + 
-				"        \"reasonValue\": \"9001\",\r\n" + 
-				"        \"reasonText\": \"4 Wheeler Vehicle\",\r\n" + 
-				"        \"errorStatus\": null,\r\n" + 
-				"        \"advancesReasonList\": null\r\n" + 
-				"    },\r\n" + 
-				"    {\r\n" + 
-				"        \"reasonValue\": \"9002\",\r\n" + 
-				"        \"reasonText\": \"2 Wheeler Vehicle\",\r\n" + 
-				"        \"errorStatus\": null,\r\n" + 
-				"        \"advancesReasonList\": null\r\n" + 
-				"    },\r\n" + 
-				"    {\r\n" + 
-				"        \"reasonValue\": \"9003\",\r\n" + 
-				"        \"reasonText\": \"Consumer Article\",\r\n" + 
-				"        \"errorStatus\": null,\r\n" + 
-				"        \"advancesReasonList\": null\r\n" + 
-				"    },\r\n" + 
-				"    {\r\n" + 
-				"        \"reasonValue\": \"9012\",\r\n" + 
-				"        \"reasonText\": \"Education\",\r\n" + 
-				"        \"errorStatus\": null,\r\n" + 
-				"        \"advancesReasonList\": null\r\n" + 
-				"    },\r\n" + 
-				"    {\r\n" + 
-				"        \"reasonValue\": \"9017\",\r\n" + 
-				"        \"reasonText\": \"Travel\",\r\n" + 
-				"        \"errorStatus\": null,\r\n" + 
-				"        \"advancesReasonList\": null\r\n" + 
-				"    }\r\n" + 
-				"]";
+		
+		String advreasonl= "";
+		
+		try {
+			Statement st = com.kindsonthegenius.thymeleafapp.services.MyConnection.Connect().createStatement();
+			ResultSet rs = st.executeQuery("select * from d_schedule order by category;"); 
+			while(rs.next()){	
+				advreasonl += ""+rs.getString(2);
+			}
+		} catch (Exception e) { }
+		
+		
+		return advreasonl;
 	}
 	
 	public String advdetailset() {
