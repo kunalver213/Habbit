@@ -34,11 +34,5 @@ public class HabbitController {
 		return HabbService.dashdata();
 	}
 	
-	@RequestMapping(value="/dash2", produces = "application/json")
-	@ResponseBody
-	public String getAdvTypeList(@RequestBody String empId) {
-		return HabbService.dashdata();
-	}
-	
 	
 }
