@@ -16,21 +16,21 @@ public class HabbService {
 			while(rs.next()){	
 				int time = Integer.parseInt((rs.getString("time").replace(":", "")));
 				if(time < 130000) {
-					morning += ",\"shd"+rs.getString("id")+"\":{"
+					morning += ",\"shd\":{"
 							+ "\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
-						+ "}";
+							+ "}";
 				}else 
 				if(time < 170000) {
-					afternoon += ",\"shd"+rs.getString("id")+"\":{"
+					afternoon += ",\"shd\":{"
 							+ "\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
-						+ "}";
+							+ "}";
 				}else{
-					evening += ",\"shd"+rs.getString("id")+"\":{"
+					evening += ",\"shd\":{"
 							+ "\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
-						+ "}";
+							+ "}";
 				}
 				
 			}
