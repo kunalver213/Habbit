@@ -41,8 +41,9 @@ public class HabbService {
 		evening = evening.substring(1);
 
 
-		return "{ \"Morning\" : { "+morning+" }, \"Afternoon\" : { "+afternoon+" }, \"Evening\" : { "+evening+" } }";
+//		return "{ \"Morning\" : { "+morning+" }, \"Afternoon\" : { "+afternoon+" }, \"Evening\" : { "+evening+" } }";
 
+		return "{ \"Morning\": [     {         \"title\": \"Breath\",         \"time\": \"06:00:00\"     }, {         \"title\": \"M\",         \"time\": \"06:00:00\"     }, {         \"title\": \"SH\",         \"time\": \"06:00:00\"     } ] }";
 	}
 	
 
