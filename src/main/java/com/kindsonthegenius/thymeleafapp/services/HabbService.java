@@ -18,18 +18,21 @@ public class HabbService {
 				int time = Integer.parseInt((rs.getString("time").replace(":", "")));
 				if(time < 130000) {
 					morning += ",{"
-							+ "\"title\":\""+rs.getString("title")+"\""
+							+ "\"id\":\""+rs.getString("id")+"\""
+							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
 							+ "}";
 				}else 
 				if(time < 170000) {
 					afternoon += ",{"
-							+ "\"title\":\""+rs.getString("title")+"\""
+							+ "\"id\":\""+rs.getString("id")+"\""
+							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
 							+ "}";
 				}else{
 					evening += ",{"
-							+ "\"title\":\""+rs.getString("title")+"\""
+							+ "\"id\":\""+rs.getString("id")+"\""
+							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
 							+ "}";
 				}
@@ -46,6 +49,25 @@ public class HabbService {
 
 	}
 	
+	
+	public static String logDasdata(String shdIds) {	
 
+		shdIds = shdIds.substring(1);
+		shdIds = "(" + shdIds.replace(",", "),(") + ")";
+
+		try {
+			MyConnection.Connect().createStatement()
+					.executeUpdate("insert into d_logs (schedule_id) values "+shdIds);
+
+			return  "1";
+
+		} catch (Exception e) {
+			return  "0";}	
+	}
+	
+	
+	
+	
+	
 
 }

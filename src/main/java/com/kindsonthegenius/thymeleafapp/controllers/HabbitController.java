@@ -35,5 +35,12 @@ public class HabbitController {
 		return HabbService.dashdata();
 	}
 	
+	@CrossOrigin
+	@RequestMapping("/logdash")
+	@ResponseBody
+	public String logdash(String shdIds) {
+		return HabbService.logDasdata(shdIds); 
+	}
+	
 	
 }
