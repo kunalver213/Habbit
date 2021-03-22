@@ -3,6 +3,8 @@ package com.kindsonthegenius.thymeleafapp.services;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import rbi.kunalwebapp.MyConnection;
+
 public class HabbService {
 	
 	public static String dashdata() {
@@ -16,18 +18,18 @@ public class HabbService {
 			while(rs.next()){	
 				int time = Integer.parseInt((rs.getString("time").replace(":", "")));
 				if(time < 130000) {
-					morning += ",\"shd\":{"
+					morning += ",\"shd"+rs.getString("id")+"\":{"
 							+ "\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
 							+ "}";
 				}else 
 				if(time < 170000) {
-					afternoon += ",\"shd\":{"
+					afternoon += ",\"shd"+rs.getString("id")+"\":{"
 							+ "\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
 							+ "}";
 				}else{
-					evening += ",\"shd\":{"
+					evening += ",\"shd"+rs.getString("id")+"\":{"
 							+ "\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
 							+ "}";
