@@ -3,8 +3,6 @@ package com.kindsonthegenius.thymeleafapp.services;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import rbi.kunalwebapp.MyConnection;
-
 public class HabbService {
 	
 	public static String dashdata() {
