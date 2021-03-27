@@ -62,7 +62,7 @@ public class HabbService {
 			return  "1";
 
 		} catch (Exception e) {
-			return  "0";}	
+			return  "0"+e.toString();}	
 	}
 	
 	
