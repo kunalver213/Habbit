@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kindsonthegenius.thymeleafapp.models.Jsons;
@@ -38,7 +39,7 @@ public class HabbitController {
 	@CrossOrigin
 	@RequestMapping("/logdash")
 	@ResponseBody
-	public String logdash(String shdIds) {
+	public String logdash(@RequestParam String shdIds) {
 		return HabbService.logDasdata(shdIds); 
 	}
 	
