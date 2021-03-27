@@ -3,13 +3,14 @@ package com.kindsonthegenius.thymeleafapp.services;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
 public class HabbService {
 	
 	public static String dashdata() {
 		String morning = "";
 		String afternoon = "";
 		String evening = "";
+		
+		String log = getlogDasdata();
 		
 		try {
 			ResultSet rs = MyConnection.Connect().createStatement()
@@ -21,6 +22,7 @@ public class HabbService {
 							+ "\"id\":\""+rs.getString("id")+"\""
 							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
+							+ ",\"status\":\""+((log.contains("["+rs.getString("id")+"]"))?"1":"0")+"\""
 							+ "}";
 				}else 
 				if(time < 170000) {
@@ -28,12 +30,14 @@ public class HabbService {
 							+ "\"id\":\""+rs.getString("id")+"\""
 							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
+							+ ",\"status\":\""+((log.contains("["+rs.getString("id")+"]"))?"1":"0")+"\""
 							+ "}";
 				}else{
 					evening += ",{"
 							+ "\"id\":\""+rs.getString("id")+"\""
 							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
+							+ ",\"status\":\""+((log.contains("["+rs.getString("id")+"]"))?"1":"0")+"\""
 							+ "}";
 				}
 				
@@ -48,14 +52,33 @@ public class HabbService {
 		return "{ \"Morning\" : [ "+morning+" ], \"Afternoon\" : [ "+afternoon+" ], \"Evening\" : [ "+evening+" ] }";
 
 	}
-	
-	
+
+
+	public static String getlogDasdata() {	
+		String log = "";
+		try {
+			ResultSet rs = MyConnection.Connect().createStatement()
+					.executeQuery("select * from d_logs where Date(ts_complete)=CURRENT_DATE();"); 
+			while(rs.next()){	
+				log += "["+rs.getString("schedule_id")+"]";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return log;
+	}
+		
+		
 	public static String logDasdata(String shdIds) {	
 
 		shdIds = shdIds.substring(1);
 		shdIds = "(" + shdIds.replace(",", "),(") + ")";
 
 		try {
+			
+			System.out.println("insert into d_logs (schedule_id) values "+shdIds);
+			
 			MyConnection.Connect().createStatement()
 					.executeUpdate("insert into d_logs (schedule_id) values "+shdIds);
 
@@ -64,8 +87,6 @@ public class HabbService {
 		} catch (Exception e) {
 			return  "0"+e.toString();}	
 	}
-	
-	
 	
 	
 	
