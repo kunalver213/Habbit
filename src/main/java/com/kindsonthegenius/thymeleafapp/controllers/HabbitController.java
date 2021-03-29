@@ -39,8 +39,8 @@ public class HabbitController {
 	@CrossOrigin
 	@RequestMapping("/logdash")
 	@ResponseBody
-	public String logdash(@RequestParam String shdIds) {
-		return HabbService.logDasdata(shdIds); 
+	public String logdash(@RequestParam String shdId, String time) {
+		return HabbService.logDasdata(shdId, time);
 	}
 	
 	

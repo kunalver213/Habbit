@@ -1,7 +1,6 @@
 package com.kindsonthegenius.thymeleafapp.services;
 
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class HabbService {
 	
@@ -70,17 +69,12 @@ public class HabbService {
 	}
 		
 		
-	public static String logDasdata(String shdIds) {	
-
-		shdIds = shdIds.substring(1);
-		shdIds = "(" + shdIds.replace(",", "),(") + ")";
+	public static String logDasdata(String shdId, String time) {	
 
 		try {
 			
-			System.out.println("insert into d_logs (schedule_id) values "+shdIds);
-			
 			MyConnection.Connect().createStatement()
-					.executeUpdate("insert into d_logs (schedule_id) values "+shdIds);
+					.executeUpdate("insert into d_logs (schedule_id, ts_complete) values ("+shdId+", '"+time+"'); ");
 
 			return  "1";
 
