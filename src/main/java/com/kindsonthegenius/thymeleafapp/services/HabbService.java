@@ -2,6 +2,7 @@ package com.kindsonthegenius.thymeleafapp.services;
 
 import java.sql.ResultSet;
 
+
 public class HabbService {
 	
 	public static String dashdata() {
@@ -10,11 +11,19 @@ public class HabbService {
 		String evening = "";
 		
 		String log = getlogDasdata();
+		String weekDayNo = getWeekDayNo();
 		
 		try {
 			ResultSet rs = MyConnection.Connect().createStatement()
 					.executeQuery("select * from d_schedule order by time;"); 
-			while(rs.next()){	
+			while(rs.next()){
+				
+				if(!rs.getString("week").trim().equals("")) { 
+					if(!rs.getString("week").contains(weekDayNo)) {
+						continue; 
+					}
+				}
+				
 				int time = Integer.parseInt((rs.getString("time").replace(":", "")));
 				if(time < 130000) {
 					morning += ",{"
@@ -43,9 +52,14 @@ public class HabbService {
 			}
 		} catch (Exception e) { }		
 
-		morning = morning.substring(1);
-		afternoon = afternoon.substring(1);
-		evening = evening.substring(1);
+		if(!morning.trim().equals("")) {  
+		morning = morning.substring(1); }
+		
+		if(!afternoon.trim().equals("")) {  
+		afternoon = afternoon.substring(1); }
+		
+		if(!evening.trim().equals("")) {  
+		evening = evening.substring(1); }
 
 
 		return "{ \"Morning\" : [ "+morning+" ], \"Afternoon\" : [ "+afternoon+" ], \"Evening\" : [ "+evening+" ] }";
@@ -83,6 +97,20 @@ public class HabbService {
 	}
 	
 	
+	public static String getWeekDayNo() {
+		String weekDayNo = "";
+		
+		try {
+			ResultSet rs = MyConnection.Connect().createStatement()
+					.executeQuery("SELECT WEEKDAY(CURRENT_DATE());"); 
+			while(rs.next()){
+				weekDayNo = rs.getString(1);
+			}
+	
+		} catch (Exception e) { }		
+
+		return weekDayNo;
+	}
 	
 
 }
