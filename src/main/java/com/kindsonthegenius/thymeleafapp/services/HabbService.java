@@ -145,14 +145,27 @@ public class HabbService {
 	
 	public static String weekJson(String json) {
 		
-		json = "{ \"sat\":\""+(json.contains("(5)")?"x":"")
-				+"\",\"sun\":\""+(json.contains("(6)")?"x":"")
-				+"\",\"mon\":\""+(json.contains("(0)")?"x":"")
-				+"\",\"tue\":\""+(json.contains("(1)")?"x":"")
-				+"\",\"wed\":\""+(json.contains("(2)")?"x":"")
-				+"\",\"thu\":\""+(json.contains("(3)")?"x":"")
-				+"\",\"fri\":\""+(json.contains("(4)")?"x":"")
-				+"\"}"; 
+		if(json.trim().equals("")) {
+			json = "{\"sat\": \"x\",\r\n" + 
+					"\"sun\": \"x\",\r\n" + 
+					"\"mon\": \"x\",\r\n" + 
+					"\"tue\": \"x\",\r\n" + 
+					"\"wed\": \"x\",\r\n" + 
+					"\"thu\": \"x\",\r\n" + 
+					"\"fri\": \"x\"}\r\n" + 
+					""; 
+		}else {
+			json = "{ \"sat\":\""+(json.contains("(5)")?"x":"")
+					+"\",\"sun\":\""+(json.contains("(6)")?"x":"")
+					+"\",\"mon\":\""+(json.contains("(0)")?"x":"")
+					+"\",\"tue\":\""+(json.contains("(1)")?"x":"")
+					+"\",\"wed\":\""+(json.contains("(2)")?"x":"")
+					+"\",\"thu\":\""+(json.contains("(3)")?"x":"")
+					+"\",\"fri\":\""+(json.contains("(4)")?"x":"")
+					+"\"}"; 
+		}
+		
+		
 		
 		return json;
 	}
