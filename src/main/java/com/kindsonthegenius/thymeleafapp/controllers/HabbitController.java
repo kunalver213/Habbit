@@ -32,8 +32,8 @@ public class HabbitController {
 	@CrossOrigin
 	@RequestMapping("/dash")
 	@ResponseBody
-	public String dash() {
-		return HabbService.dashdata();
+	public String dash(@RequestParam int option) {
+		return HabbService.dashdata(option);
 	}
 	
 	@CrossOrigin
