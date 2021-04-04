@@ -39,7 +39,7 @@ public class HabbService {
 							+ "\"id\":\""+rs.getString("id")+"\""
 							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
-							+ ",\"week\":\""+rs.getString("week")+"\""
+							+ ",\"week\":"+weekJson(rs.getString("week"))+""
 							+ ",\"month\":\""+rs.getString("month")+"\""
 							+ ",\"status\":\""+((log.contains("["+rs.getString("id")+"]"))?"1":"0")+"\""
 							+ "}";
@@ -49,7 +49,7 @@ public class HabbService {
 							+ "\"id\":\""+rs.getString("id")+"\""
 							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
-							+ ",\"week\":\""+rs.getString("week")+"\""
+							+ ",\"week\":"+weekJson(rs.getString("week"))+""
 							+ ",\"month\":\""+rs.getString("month")+"\""
 							+ ",\"status\":\""+((log.contains("["+rs.getString("id")+"]"))?"1":"0")+"\""
 							+ "}";
@@ -58,7 +58,7 @@ public class HabbService {
 							+ "\"id\":\""+rs.getString("id")+"\""
 							+ ",\"title\":\""+rs.getString("title")+"\""
 							+ ",\"time\":\""+rs.getString("time")+"\""
-							+ ",\"week\":\""+rs.getString("week")+"\""
+							+ ",\"week\":"+weekJson(rs.getString("week"))+""
 							+ ",\"month\":\""+rs.getString("month")+"\""
 							+ ",\"status\":\""+((log.contains("["+rs.getString("id")+"]"))?"1":"0")+"\""
 							+ "}";
@@ -143,6 +143,19 @@ public class HabbService {
 	}
 	
 	
+	public static String weekJson(String json) {
+		
+		json = "{ \"sat\":\""+(json.contains("(5)")?"x":"")
+				+"\",\"sun\":\""+(json.contains("(6)")?"x":"")
+				+"\",\"mon\":\""+(json.contains("(0)")?"x":"")
+				+"\",\"tue\":\""+(json.contains("(1)")?"x":"")
+				+"\",\"wed\":\""+(json.contains("(2)")?"x":"")
+				+"\",\"thu\":\""+(json.contains("(3)")?"x":"")
+				+"\",\"fri\":\""+(json.contains("(4)")?"x":"")
+				+"\"}"; 
+		
+		return json;
+	}
 	
 	public static void main(String[] args) {
 		System.out.println(dashdata(1));
